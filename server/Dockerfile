@@ -29,6 +29,8 @@ RUN python3 -m venv venv
 RUN ./build.sh
 
 # Ensure the user has access to /liquibase/changelog for Liquibase operations
+RUN mkdir /liquibase/changelog
+RUN git config --global --add safe.directory /changelog
 WORKDIR /changelog
 
 # Command to run the Flask app using Gunicorn with 4 workers
