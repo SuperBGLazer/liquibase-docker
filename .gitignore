@@ -1,0 +1,7 @@
+liquibase.properties
+db/*
+.venv/*
+liquibase/*
+id_rsa
+id_rsa.pub
+venv/*

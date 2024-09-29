@@ -1,0 +1,30 @@
+services:
+  liquibase:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    volumes:
+      - ./liquibase:/liquibase/changelog
+    depends_on:
+      - db
+    networks:
+      - backend
+    ports:
+      - 5000:5000
+  
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      SA_PASSWORD: "YourStrong!Passw0rd"
+      ACCEPT_EULA: true
+      
+    networks:
+      - backend
+    volumes:
+      - ./db:/var/opt/mssql/data
+    
+    ports:
+      - "1433:1433"
+
+networks:
+  backend:
